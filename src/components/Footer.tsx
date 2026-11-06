@@ -1,143 +1,104 @@
-import { Facebook, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+"use client";
 
-const quickLinks = [
-  { name: "Accueil", href: "#accueil" },
-  { name: "Produits", href: "#produits" },
-  { name: "Catégories", href: "#categories" },
-  { name: "Contact", href: "#devis" },
-];
+import { Facebook, Instagram, MapPin, Phone, Mail } from "lucide-react";
+import { categories } from "@/data/categories";
+import { useLang, whatsappLink, PHONE_DISPLAY, EMAIL, type DictKey } from "@/lib/i18n";
+import { WhatsAppIcon } from "@/components/common/WhatsAppIcon";
 
-const categoryLinks = [
-  { name: "المكافحة البيولوجية", href: "#produits" },
-  { name: "المنتجات الطبيعية", href: "#produits" },
-  { name: "الأسمدة والتغذية الزراعية", href: "#produits" },
-];
-
-const socialLinks = [
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
+const quickLinks: { key: DictKey; href: string }[] = [
+  { key: "nav.home", href: "#accueil" },
+  { key: "nav.categories", href: "#categories" },
+  { key: "nav.products", href: "#produits" },
+  { key: "nav.contact", href: "#devis" },
 ];
 
 export function Footer() {
-  const currentYear = new Date().getFullYear();
+  const { t, isAr } = useLang();
+  const year = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-brand-950 text-white pt-16 pb-8 border-t border-brand-900/50">
+    <footer id="contact" className="bg-gray-950 text-white pt-16 pb-8 border-t border-white/5">
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
-          {/* Column 1: Brand */}
           <div className="flex flex-col gap-5">
-            <a href="#accueil" className="inline-block group focus:outline-none">
-              <img
-                src="/images/logo-light.png"
-                alt="BH FERTI"
-                className="h-20 sm:h-24 md:h-26 lg:h-28 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-md"
-              />
+            <a href="#accueil" className="inline-block">
+              <img src="/images/logo-light.png" alt="BH FERTI" className="h-20 sm:h-24 w-auto object-contain" />
             </a>
-            <p className="text-gray-400 text-sm leading-relaxed max-w-sm">
-              Des solutions agricoles innovantes pour une meilleure productivité
-              et protection des cultures. Votre partenaire de confiance pour
-              l&apos;agriculture durable et performante.
-            </p>
-            <div className="flex gap-3 mt-1">
-              {socialLinks.map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-400 hover:bg-brand-500 hover:text-white transition-all duration-300 hover:scale-110"
-                >
+            <p className="text-gray-400 text-sm leading-relaxed max-w-sm">{t("footer.about")}</p>
+            <div className="flex gap-3">
+              <a href={whatsappLink(t("wa.generalMsg"))} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-[#25D366] hover:text-white transition-colors">
+                <WhatsAppIcon className="w-5 h-5" />
+              </a>
+              {[{ Icon: Facebook, label: "Facebook" }, { Icon: Instagram, label: "Instagram" }].map(({ Icon, label }) => (
+                <a key={label} href="#" aria-label={label} className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-gray-300 hover:bg-brand-500 hover:text-white transition-colors">
                   <Icon className="w-4 h-4" />
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-base font-semibold text-white tracking-wide uppercase text-brand-400">
-              Liens Rapides
-            </h3>
+            <h3 className="text-sm font-bold tracking-wider uppercase text-brand-400">{t("footer.links")}</h3>
             <ul className="flex flex-col gap-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors inline-flex items-center gap-2 text-sm group"
-                  >
-                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500 transition-transform group-hover:scale-150" />
-                    {link.name}
+              {quickLinks.map((l) => (
+                <li key={l.key}>
+                  <a href={l.href} className="text-gray-400 hover:text-white transition-colors inline-flex items-center gap-2 text-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-brand-500" />
+                    {t(l.key)}
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 3: Categories */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-base font-semibold text-white tracking-wide uppercase text-brand-400">
-              Catégories
-            </h3>
+            <h3 className="text-sm font-bold tracking-wider uppercase text-brand-400">{t("footer.categories")}</h3>
             <ul className="flex flex-col gap-2.5">
-              {categoryLinks.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors text-sm font-[Cairo] hover:underline"
-                    dir="rtl"
+              {categories.map((c) => (
+                <li key={c.id}>
+                  <button
+                    type="button"
+                    onClick={() => window.dispatchEvent(new CustomEvent("select-category", { detail: c.id }))}
+                    className="text-gray-400 hover:text-white transition-colors text-sm text-start"
                   >
-                    {link.name}
-                  </a>
+                    {isAr ? c.nameAr : c.nameFr}
+                  </button>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Column 4: Contact */}
           <div className="flex flex-col gap-4">
-            <h3 className="text-base font-semibold text-white tracking-wide uppercase text-brand-400">
-              Contact
-            </h3>
+            <h3 className="text-sm font-bold tracking-wider uppercase text-brand-400">{t("footer.contact")}</h3>
             <ul className="flex flex-col gap-4">
-              <li className="flex items-start gap-3 group">
-                <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-500/20 transition-colors">
-                  <Mail className="w-4 h-4 text-brand-400" />
-                </div>
+              <li className="flex items-start gap-3">
+                <span className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0"><Phone className="w-4 h-4 text-brand-400" /></span>
                 <div>
-                  <p className="text-xs text-gray-500 mb-0.5">Email</p>
-                  <a href="mailto:bhferti@gmail.com" className="text-gray-300 text-sm hover:text-white transition-colors">
-                    bhferti@gmail.com
-                  </a>
+                  <p className="text-xs text-gray-500 mb-0.5">{t("quote.phone")}</p>
+                  <a href="tel:+212661982832" className="text-gray-200 text-sm hover:text-white font-medium ltr-value">{PHONE_DISPLAY}</a>
                 </div>
               </li>
-              <li className="flex items-start gap-3 group">
-                <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-500/20 transition-colors">
-                  <Phone className="w-4 h-4 text-brand-400" />
-                </div>
+              <li className="flex items-start gap-3">
+                <span className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0"><Mail className="w-4 h-4 text-brand-400" /></span>
                 <div>
-                  <p className="text-xs text-gray-500 mb-0.5">Téléphone / WhatsApp</p>
-                  <a href="tel:+212661982832" className="text-gray-300 text-sm hover:text-white transition-colors font-medium">
-                    0661-982832
-                  </a>
+                  <p className="text-xs text-gray-500 mb-0.5">{t("quote.email")}</p>
+                  <a href={`mailto:${EMAIL}`} className="text-gray-200 text-sm hover:text-white">{EMAIL}</a>
                 </div>
               </li>
-              <li className="flex items-start gap-3 group">
-                <div className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-500/20 transition-colors">
-                  <MapPin className="w-4 h-4 text-brand-400" />
-                </div>
+              <li className="flex items-start gap-3">
+                <span className="w-9 h-9 rounded-lg bg-white/10 flex items-center justify-center shrink-0"><MapPin className="w-4 h-4 text-brand-400" /></span>
                 <div>
-                  <p className="text-xs text-gray-500 mb-0.5">Adresse</p>
-                  <span className="text-gray-300 text-sm">Aït Melloul, Maroc</span>
+                  <p className="text-xs text-gray-500 mb-0.5">{t("quote.address")}</p>
+                  <span className="text-gray-200 text-sm">{t("quote.addressValue")}</span>
                 </div>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-white/10 pt-8 mt-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-xs">
-          <p>© {currentYear} BHFERTI. Tous droits réservés.</p>
-          <p className="text-gray-500">Solutions Agricoles Innovantes</p>
+        <div className="border-t border-white/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-xs">
+          <p>© {year} BH FERTI. {t("footer.rights")}</p>
+          <p>{t("footer.tagline")}</p>
         </div>
       </div>
     </footer>

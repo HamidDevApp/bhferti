@@ -4,6 +4,7 @@ import { useState } from "react";
 import { SlidersHorizontal, ChevronDown, RotateCcw, X } from "lucide-react";
 import { categories, cropTypes, purposes } from "@/data/categories";
 import { cn } from "@/lib/utils";
+import { useLang } from "@/lib/i18n";
 
 interface FilterSidebarProps {
   selectedCategories: string[];
@@ -28,6 +29,7 @@ export default function FilterSidebar({
   setSelectedPurposes,
   totalResults,
 }: FilterSidebarProps) {
+  const { t, isAr } = useLang();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const [openGroups, setOpenGroups] = useState({
     categories: true,
@@ -89,7 +91,7 @@ export default function FilterSidebar({
           className="flex w-full items-center justify-between font-semibold text-gray-800 mb-2 py-1 select-none hover:text-brand-600 transition-colors"
         >
           <span className="text-sm">
-            Catégories{" "}
+            {t("filter.categories")}{" "}
             {selectedCategories.length > 0 && (
               <span className="text-xs font-normal text-brand-600">
                 ({selectedCategories.length})
@@ -146,7 +148,7 @@ export default function FilterSidebar({
                         </svg>
                       </div>
                       <span className="text-sm text-gray-700 group-hover:text-gray-900 transition-colors font-medium">
-                        {cat.nameFr}
+                        {isAr ? cat.nameAr : cat.nameFr}
                       </span>
                     </label>
 
@@ -154,7 +156,7 @@ export default function FilterSidebar({
                     {showSubcategories &&
                       cat.subcategories &&
                       cat.subcategories.length > 0 && (
-                        <div className="ml-6 space-y-2 border-l-2 border-brand-100 pl-3 pt-1">
+                        <div className="ms-6 space-y-2 border-s-2 border-brand-100 ps-3 pt-1">
                           {cat.subcategories.map((sub) => {
                             const isSubChecked =
                               selectedSubcategories.includes(sub.id);
@@ -191,7 +193,7 @@ export default function FilterSidebar({
                                   </svg>
                                 </div>
                                 <span className="text-xs text-gray-600 group-hover:text-gray-900 transition-colors">
-                                  {sub.nameFr}
+                                  {isAr ? sub.nameAr : sub.nameFr}
                                 </span>
                               </label>
                             );
@@ -214,7 +216,7 @@ export default function FilterSidebar({
           className="flex w-full items-center justify-between font-semibold text-gray-800 mb-2 py-1 select-none hover:text-brand-600 transition-colors"
         >
           <span className="text-sm">
-            Type de Culture{" "}
+            {t("filter.crops")}{" "}
             {selectedCropTypes.length > 0 && (
               <span className="text-xs font-normal text-brand-600">
                 ({selectedCropTypes.length})
@@ -271,7 +273,7 @@ export default function FilterSidebar({
                     </svg>
                   </div>
                   <span className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
-                    {ct.label}
+                    {isAr ? ct.labelAr : ct.label}
                   </span>
                 </label>
               ))}
@@ -288,7 +290,7 @@ export default function FilterSidebar({
           className="flex w-full items-center justify-between font-semibold text-gray-800 mb-2 py-1 select-none hover:text-brand-600 transition-colors"
         >
           <span className="text-sm">
-            Usage{" "}
+            {t("filter.usage")}{" "}
             {selectedPurposes.length > 0 && (
               <span className="text-xs font-normal text-brand-600">
                 ({selectedPurposes.length})
@@ -345,7 +347,7 @@ export default function FilterSidebar({
                     </svg>
                   </div>
                   <span className="text-sm text-gray-600 group-hover:text-gray-900 transition-colors">
-                    {p.label}
+                    {isAr ? p.labelAr : p.label}
                   </span>
                 </label>
               ))}
@@ -367,15 +369,15 @@ export default function FilterSidebar({
         >
           <div className="flex items-center gap-2 font-semibold text-gray-900">
             <SlidersHorizontal size={20} className="text-brand-500" />
-            <span>Filtres</span>
+            <span>{t("filter.title")}</span>
             {totalActiveFilters > 0 && (
-              <span className="ml-1 px-2 py-0.5 text-xs font-bold rounded-full bg-brand-500 text-white">
+              <span className="ms-1 px-2 py-0.5 text-xs font-bold rounded-full bg-brand-500 text-white">
                 {totalActiveFilters}
               </span>
             )}
           </div>
           <span className="text-xs text-gray-500">
-            {totalResults} {totalResults > 1 ? "produits" : "produit"}
+            {totalResults} {t("filter.found")}
           </span>
         </button>
       </div>
@@ -394,8 +396,9 @@ export default function FilterSidebar({
 
       <div
         className={cn(
-          "fixed inset-y-0 right-0 z-50 w-full max-w-xs sm:max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden flex flex-col",
-          isMobileOpen ? "translate-x-0" : "translate-x-full"
+          "fixed inset-y-0 z-50 w-full max-w-xs sm:max-w-sm bg-white shadow-2xl transition-transform duration-300 ease-in-out lg:hidden flex flex-col",
+          isAr ? "left-0" : "right-0",
+          isMobileOpen ? "translate-x-0" : isAr ? "-translate-x-full" : "translate-x-full"
         )}
         role="dialog"
         aria-modal="true"
@@ -404,9 +407,9 @@ export default function FilterSidebar({
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100">
           <div className="flex items-center gap-2 font-bold text-gray-900">
             <SlidersHorizontal size={18} className="text-brand-500" />
-            <span>Filtres</span>
+            <span>{t("filter.title")}</span>
             {totalActiveFilters > 0 && (
-              <span className="ml-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-brand-50 text-brand-600 border border-brand-200">
+              <span className="ms-1 px-2 py-0.5 text-xs font-semibold rounded-full bg-brand-50 text-brand-600 border border-brand-200">
                 {totalActiveFilters}
               </span>
             )}
@@ -417,17 +420,17 @@ export default function FilterSidebar({
                 type="button"
                 onClick={handleReset}
                 className="text-xs text-gray-500 hover:text-brand-500 flex items-center gap-1 transition-colors"
-                title="Réinitialiser"
+                title={t("filter.reset")}
               >
                 <RotateCcw size={14} />
-                <span>Effacer</span>
+                <span>{t("filter.clear")}</span>
               </button>
             )}
             <button
               type="button"
               onClick={() => setIsMobileOpen(false)}
               className="p-1.5 text-gray-500 hover:text-gray-900 rounded-lg hover:bg-gray-100 transition-colors"
-              aria-label="Fermer les filtres"
+              aria-label={t("filter.close")}
             >
               <X size={20} />
             </button>
@@ -442,14 +445,14 @@ export default function FilterSidebar({
         {/* Mobile Panel Footer */}
         <div className="p-4 border-t border-gray-100 bg-gray-50 flex items-center justify-between gap-3">
           <span className="text-xs text-gray-600 font-medium">
-            {totalResults} {totalResults > 1 ? "produits trouvés" : "produit trouvé"}
+            {totalResults} {t("filter.found")}
           </span>
           <button
             type="button"
             onClick={() => setIsMobileOpen(false)}
             className="px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white text-sm font-semibold rounded-xl transition-colors shadow-xs"
           >
-            Voir les résultats
+            {t("filter.see")}
           </button>
         </div>
       </div>
@@ -460,16 +463,16 @@ export default function FilterSidebar({
           <div className="flex items-center justify-between mb-6 pb-4 border-b border-gray-100">
             <div className="flex items-center gap-2">
               <SlidersHorizontal size={20} className="text-brand-500" />
-              <h3 className="font-bold text-gray-900">Filtres Avancés</h3>
+              <h3 className="font-bold text-gray-900">{t("filter.advanced")}</h3>
             </div>
             <button
               type="button"
               onClick={handleReset}
               className="flex items-center gap-1 text-sm text-gray-500 hover:text-brand-500 transition-colors cursor-pointer"
-              title="Réinitialiser"
+              title={t("filter.reset")}
             >
               <RotateCcw size={16} />
-              <span>Réinitialiser</span>
+              <span>{t("filter.reset")}</span>
             </button>
           </div>
 
@@ -477,7 +480,7 @@ export default function FilterSidebar({
 
           <div className="mt-8 pt-6 border-t border-gray-100">
             <p className="text-sm font-medium text-gray-600 text-center">
-              {totalResults} {totalResults > 1 ? "produits trouvés" : "produit trouvé"}
+              {totalResults} {t("filter.found")}
             </p>
           </div>
         </div>

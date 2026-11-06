@@ -14,6 +14,7 @@ export interface Category {
   nameAr: string;
   nameFr: string;
   badgeText: string;
+  badgeTextFr: string;
   description: string;
   descriptionAr: string;
   icon: LucideIcon;
@@ -34,6 +35,7 @@ export const categories: Category[] = [
     nameAr: "منتجات الحماية البيولوجية",
     nameFr: "Protection Biologique",
     badgeText: "حماية طبيعية • 0 متبقيات",
+    badgeTextFr: "Protection naturelle • 0 résidu",
     description:
       "Solutions biologiques certifiées pour la protection des cultures : nématicides, fongicides, acaricides, traitement des bassins et anti-salinité du sol.",
     descriptionAr:
@@ -58,6 +60,7 @@ export const categories: Category[] = [
     nameAr: "الأسمدة والتغذية الزراعية",
     nameFr: "Engrais & Nutrition",
     badgeText: "إنتاجية قصوى • جودة الثمار",
+    badgeTextFr: "Rendement maximal • Qualité des fruits",
     description:
       "Engrais spéciaux, acides fulviques, enracineurs, biostimulants, correcteurs de carences et solutions de floraison et grossissement des fruits.",
     descriptionAr:
@@ -74,6 +77,7 @@ export const categories: Category[] = [
       { id: "floraison", nameFr: "Floraison", nameAr: "إزهار" },
       { id: "grossissement", nameFr: "Grossissement Fruit", nameAr: "تضخيم الثمار" },
       { id: "correcteur-carences", nameFr: "Correcteur de Carences", nameAr: "مصحح نقص العناصر" },
+      { id: "regulateur-ph", nameFr: "Régulateur de pH", nameAr: "منظم الحموضة" },
     ],
   },
 ];
@@ -85,19 +89,19 @@ export const allSubcategories: Subcategory[] = categories.flatMap(
 
 /* ─── Crop Types ─── */
 export const cropTypes = [
-  { id: "cereals", label: "Céréales" },
-  { id: "fruits", label: "Fruits" },
-  { id: "vegetables", label: "Légumes" },
-  { id: "olives", label: "Oliviers" },
-  { id: "vines", label: "Vignobles" },
-  { id: "citrus", label: "Agrumes" },
+  { id: "cereals", label: "Céréales", labelAr: "الحبوب" },
+  { id: "fruits", label: "Fruits", labelAr: "الفواكه" },
+  { id: "vegetables", label: "Légumes", labelAr: "الخضر" },
+  { id: "olives", label: "Oliviers", labelAr: "الزيتون" },
+  { id: "vines", label: "Vignobles", labelAr: "الكروم" },
+  { id: "citrus", label: "Agrumes", labelAr: "الحوامض" },
 ] as const;
 
 /* ─── Purposes ─── */
 export const purposes = [
-  { id: "nutrition", label: "Nutrition" },
-  { id: "protection", label: "Protection" },
-  { id: "growth", label: "Croissance" },
-  { id: "yield", label: "Rendement" },
-  { id: "soil", label: "Sol" },
+  { id: "nutrition", label: "Nutrition", labelAr: "التغذية" },
+  { id: "protection", label: "Protection", labelAr: "الحماية" },
+  { id: "growth", label: "Croissance", labelAr: "النمو" },
+  { id: "yield", label: "Rendement", labelAr: "المردودية" },
+  { id: "soil", label: "Sol", labelAr: "التربة" },
 ] as const;

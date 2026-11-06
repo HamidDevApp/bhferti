@@ -4,8 +4,10 @@ import { useState, useMemo, useEffect } from "react";
 import { products } from "@/data/products";
 import FilterSidebar from "./FilterSidebar";
 import ProductGrid from "./ProductGrid";
+import { useLang } from "@/lib/i18n";
 
 export default function ProductsSection() {
+  const { t } = useLang();
   const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
   const [selectedSubcategories, setSelectedSubcategories] = useState<string[]>([]);
   const [selectedCropTypes, setSelectedCropTypes] = useState<string[]>([]);
@@ -74,16 +76,14 @@ export default function ProductsSection() {
   }, [selectedCategories, selectedSubcategories, selectedCropTypes, selectedPurposes]);
 
   return (
-    <section id="produits" className="py-24 bg-gray-50">
+    <section id="produits" className="py-24 bg-gray-50 scroll-mt-20">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Nos Produits
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4 tracking-tight">
+            {t("prod.title")}
           </h2>
-          <p className="text-lg text-gray-600 mb-6">
-            Découvrez notre catalogue de solutions agricoles professionnelles
-          </p>
+          <p className="text-lg text-gray-600 mb-6">{t("prod.subtitle")}</p>
           <div className="w-24 h-1.5 bg-gradient-to-r from-brand-500 to-emerald-400 mx-auto rounded-full" />
         </div>
 
