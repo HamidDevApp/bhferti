@@ -107,6 +107,7 @@ const dict = {
   },
   "sheet.orderWhatsapp": { fr: "Commander sur WhatsApp", ar: "اطلب عبر واتساب" },
   "sheet.addQuote": { fr: "Ajouter au devis", ar: "أضف لطلب السعر" },
+  "sheet.pdf": { fr: "Télécharger la fiche (PDF)", ar: "تحميل البطاقة التقنية (PDF)" },
   "sheet.close": { fr: "Fermer", ar: "إغلاق" },
   "wa.productMsg": {
     fr: "Bonjour BH FERTI, je suis intéressé(e) par le produit : ",

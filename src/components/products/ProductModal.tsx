@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { X, Leaf, Package, FlaskConical, Droplets, CheckCircle2, AlertTriangle, Sprout, Plus, ImageOff } from "lucide-react";
+import { X, Leaf, Package, FlaskConical, Droplets, CheckCircle2, AlertTriangle, Sprout, Plus, ImageOff, FileDown } from "lucide-react";
 import { products, type Product } from "@/data/products";
 import { allSubcategories, cropTypes as allCropTypes } from "@/data/categories";
 import { useLang, whatsappLink } from "@/lib/i18n";
@@ -244,6 +244,16 @@ export default function ProductModal() {
 
         {/* Sticky actions */}
         <div className="border-t border-gray-100 bg-white p-4 sm:px-8 flex flex-col sm:flex-row gap-3 sm:justify-end">
+          {sheet?.pdf && (
+            <a
+              href={sheet.pdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="sm:me-auto inline-flex items-center justify-center gap-2 rounded-xl bg-brand-600 px-5 py-3 font-semibold text-white hover:bg-brand-700 transition-colors"
+            >
+              <FileDown className="h-4 w-4" /> {t("sheet.pdf")}
+            </a>
+          )}
           <button
             type="button"
             onClick={() => {

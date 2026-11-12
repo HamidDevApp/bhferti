@@ -20,6 +20,8 @@ export interface TechnicalSheet {
   precautions?: string[];
   packaging?: string;
   formulation?: string;
+  /** Fiche technique PDF validée (dans /public/fiches) */
+  pdf?: string;
 }
 
 export interface Product {
@@ -232,6 +234,7 @@ export const products: Product[] = [
     image: "/images/products/bh-fulvique.png",
     badge: "Nouveau",
     sheet: {
+      pdf: "/fiches/fiche-technique-bh-fulvique.pdf",
       subtitle: "Extrait humique riche en fulvique",
       composition: [
         { label: "Matière sèche", value: "74 %" },
@@ -302,6 +305,7 @@ export const products: Product[] = [
     shortDescriptionAr: "محفز حيوي عضوي — أحماض أمينية — 5 لتر",
     image: "/images/products/aminozine.png",
     sheet: {
+      pdf: "/fiches/fiche-technique-aminozime.pdf",
       subtitle: "Biostimulant organique à base d'acides aminés",
       composition: [
         { label: "Acides aminés libres", value: "18 % P/P" },
@@ -398,7 +402,7 @@ export const products: Product[] = [
       "مصحح نقص العناصر على شكل مسحوق بعناصر صغرى متوازنة (حديد، منغنيز، زنك، مغنيزيوم، بور، نحاس). يعالج النقص المتعدد وينشط عمل الإنزيمات.",
     shortDescription: "Oligo-éléments équilibrés (Fe, Mn, Zn, Mg, B, Cu) — 5 KG",
     shortDescriptionAr: "عناصر صغرى متوازنة — 5 كلغ",
-    image: "/images/products/hierrostrene.png",
+    image: "",
     badge: "Populaire",
     sheet: {
       usage: [
@@ -491,6 +495,7 @@ export const products: Product[] = [
     shortDescriptionAr: "مركب كالسيوم مخلبي — 5 و20 لتر",
     image: "/images/products/citocal.png",
     sheet: {
+      pdf: "/fiches/fiche-technique-cito-cal.pdf",
       subtitle: "Complexe de calcium chélaté",
       composition: [
         { label: "Oxyde de calcium (CaO)", value: "16 % p/p · 20 % p/v" },
@@ -534,6 +539,7 @@ export const products: Product[] = [
     image: "/images/products/pomax-l33.png",
     badge: "Best-seller",
     sheet: {
+      pdf: "/fiches/fiche-technique-pomax-l33.pdf",
       subtitle: "Chélate de potassium pour application foliaire et fertirrigation",
       composition: [
         { label: "Potassium soluble dans l'eau (K₂O)", value: "33 % P/P" },
