@@ -390,30 +390,6 @@ export const products: Product[] = [
     },
   },
   {
-    id: "hierrostrene",
-    name: "Hierrostrene",
-    categoryId: "fertilizers",
-    subcategoryId: "correcteur-carences",
-    cropTypes: ["cereals", "fruits", "vegetables", "olives", "citrus"],
-    purposes: ["nutrition", "growth"],
-    description:
-      "Correcteur de carences en poudre à base d'oligo-éléments équilibrés (Fe, Mn, Zn, Mg, B, Cu). Corrige efficacement les carences multiples et optimise le métabolisme enzymatique des cultures.",
-    descriptionAr:
-      "مصحح نقص العناصر على شكل مسحوق بعناصر صغرى متوازنة (حديد، منغنيز، زنك، مغنيزيوم، بور، نحاس). يعالج النقص المتعدد وينشط عمل الإنزيمات.",
-    shortDescription: "Oligo-éléments équilibrés (Fe, Mn, Zn, Mg, B, Cu) — 5 KG",
-    shortDescriptionAr: "عناصر صغرى متوازنة — 5 كلغ",
-    image: "",
-    badge: "Populaire",
-    sheet: {
-      usage: [
-        { label: "Fertigation", value: "1,5 - 2,5 kg/ha" },
-        { label: "Foliaire", value: "150 - 250 g/hl" },
-      ],
-      packaging: "5 kg",
-      formulation: "Poudre soluble",
-    },
-  },
-  {
     id: "fertibore",
     name: "FertiBore 17%",
     categoryId: "fertilizers",
