@@ -140,19 +140,28 @@ export const products: Product[] = [
 
   // ── Anti Salinité du Sol ──
   {
-    id: "horti-sol",
-    name: "Horti Sol",
+    id: "hortisal",
+    name: "Hortisal",
     categoryId: "protection",
     subcategoryId: "anti-salinite",
     cropTypes: ["cereals", "fruits", "vegetables", "olives"],
     purposes: ["soil", "growth"],
     description:
-      "Correcteur de salinité du sol à base d'acides organiques et de calcium. Réduit la conductivité électrique (CE), débloque les nutriments piégés et améliore la structure physique des sols salins et sodiques.",
+      "Engrais appliqué au sol à base de calcium complexé par des acides polyhydroxycarboxyliques. Corrige la salinité du sol : le calcium déplace le sodium, réduit la conductivité électrique (CE), améliore la structure des sols salins et sodiques et favorise l'absorption des nutriments.",
     descriptionAr:
-      "مصحح لملوحة التربة يعتمد على أحماض عضوية والكالسيوم. يخفض الموصلية الكهربائية، يحرر العناصر المحجوزة ويحسن بنية التربة المالحة.",
-    shortDescription: "Anti-salinité — correcteur de sol salin",
-    shortDescriptionAr: "مضاد الملوحة — مصحح التربة المالحة",
-    image: "",
+      "سماد يضاف للتربة يعتمد على الكالسيوم المركب بأحماض بولي هيدروكسي كربوكسيلية. يصحح ملوحة التربة: الكالسيوم يزيح الصوديوم، يخفض الموصلية الكهربائية، يحسن بنية التربة المالحة ويسهل امتصاص العناصر الغذائية.",
+    shortDescription: "Anti-salinité — CaO 7,28 % — 5 L",
+    shortDescriptionAr: "مضاد الملوحة — كالسيوم 7,28 % — 5 لتر",
+    image: "/images/products/hortisal.png",
+    sheet: {
+      subtitle: "Engrais appliqué au sol",
+      composition: [
+        { label: "Oxyde de calcium (CaO)", value: "7,28 % p/p" },
+        { label: "Agents complexants", value: "Acides polyhydroxycarboxyliques" },
+      ],
+      packaging: "5 L",
+      formulation: "Liquide",
+    },
   },
 
   // ── Rouleaux Adhésifs ──
@@ -164,12 +173,12 @@ export const products: Product[] = [
     cropTypes: ["fruits", "vegetables", "olives"],
     purposes: ["protection"],
     description:
-      "Rouleau adhésif chromatique noir pour le piégeage des thrips et autres insectes ravageurs. Méthode de lutte intégrée non-toxique, idéale pour les serres et les cultures sous abri.",
+      "Piège chromatique adhésif noir conçu pour cibler des ravageurs spécifiques comme la Tuta absoluta. Sa couleur noire attire ces nuisibles et facilite leur surveillance et leur contrôle, sous serre comme en plein champ.",
     descriptionAr:
-      "لفافة لاصقة سوداء لاصطياد التريبس والحشرات الضارة. طريقة مكافحة متكاملة غير سامة، مثالية للبيوت المغطاة.",
-    shortDescription: "Piège chromatique noir — thrips & ravageurs",
-    shortDescriptionAr: "مصيدة لاصقة سوداء — التريبس والحشرات",
-    image: "",
+      "مصيدة لاصقة سوداء مخصصة لحشرات معينة مثل التوتا أبسولوتا. لونها الأسود يجذب هذه الحشرات ويسهل مراقبتها ومكافحتها في البيوت المغطاة والحقول.",
+    shortDescription: "Piège chromatique noir — Tuta absoluta",
+    shortDescriptionAr: "مصيدة لاصقة سوداء — التوتا أبسولوتا",
+    image: "/images/products/rouleau-noir.png",
   },
   {
     id: "rouleau-bleu",
@@ -179,12 +188,12 @@ export const products: Product[] = [
     cropTypes: ["fruits", "vegetables", "olives"],
     purposes: ["protection"],
     description:
-      "Rouleau adhésif chromatique bleu pour le piégeage sélectif des thrips (Frankliniella occidentalis). Couleur bleue spécifiquement attractive pour ces ravageurs.",
+      "Outil de piégeage chromatique conçu spécifiquement pour lutter contre les thrips, sous serre et en plein champ. Sa couleur bleue attire ces insectes et permet une surveillance efficace et une réduction des populations, limitant les dommages aux cultures.",
     descriptionAr:
       "لفافة لاصقة زرقاء لاصطياد التريبس بشكل انتقائي. اللون الأزرق جذاب لهذه الحشرة.",
     shortDescription: "Piège chromatique bleu — thrips",
     shortDescriptionAr: "مصيدة لاصقة زرقاء — التريبس",
-    image: "",
+    image: "/images/products/rouleau-bleu.png",
   },
   {
     id: "rouleau-jaune",
@@ -194,12 +203,12 @@ export const products: Product[] = [
     cropTypes: ["fruits", "vegetables", "citrus"],
     purposes: ["protection"],
     description:
-      "Rouleau adhésif chromatique jaune pour le piégeage des aleurodes (mouches blanches), pucerons et mineuses. Piège de référence en lutte intégrée sous serre et plein champ.",
+      "L'un des pièges chromatiques les plus utilisés contre une large gamme d'insectes volants nuisibles. Très efficace pour la capture des aleurodes, pucerons et mouches blanches : un incontournable sous serre et en plein champ.",
     descriptionAr:
       "لفافة لاصقة صفراء لاصطياد الذبابة البيضاء والمن وحافرات الأوراق. مصيدة مرجعية في المكافحة المتكاملة.",
     shortDescription: "Piège chromatique jaune — aleurodes & pucerons",
     shortDescriptionAr: "مصيدة لاصقة صفراء — الذبابة البيضاء والمن",
-    image: "",
+    image: "/images/products/rouleau-jaune.png",
   },
 
   /* ═══════════════════════════════════════════════════════
